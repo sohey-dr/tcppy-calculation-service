@@ -1,3 +1,5 @@
-fn main() {
-    println!("Hello, world!");
+mod server;
+
+fn main() -> std::io::Result<()> {
+    server::run()
 }
