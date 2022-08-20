@@ -17,12 +17,15 @@ pub async fn run() -> std::io::Result<()> {
     .await
 }
 
+// NOTE: 以下の実装はDBを使用した際に使用すること
+#[warn(dead_code)]
 #[derive(Clone)]
 pub struct RequestContext {
     pool: Pool<ConnectionManager<MysqlConnection>>,
 }
 
 impl RequestContext {
+    #[warn(dead_code)]
     pub fn new() -> RequestContext {
         dotenv().ok();
         let database_url = env::var("DATABASE_URL").expect("DATABASE_URL is not set");
