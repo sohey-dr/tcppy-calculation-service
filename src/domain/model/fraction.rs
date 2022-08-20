@@ -1,22 +1,22 @@
-pub struct fraction {
+pub struct Fraction {
     numerator: i32,
     denominator: i32,
 }
 
-impl fraction {
-    pub fn new(numerator: i32, denominator: i32) -> fraction {
-        fraction {
+impl Fraction {
+    pub fn new(numerator: i32, denominator: i32) -> Fraction {
+        Fraction {
             numerator,
             denominator,
         }
     }
 
     pub fn numerator(&self) -> i32 {
-        self.numerator
+        self.numerator.clone()
     }
 
     pub fn denominator(&self) -> i32 {
-        self.denominator
+        self.denominator.clone()
     }
 
     pub fn to_string(&self) -> String {
