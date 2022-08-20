@@ -18,4 +18,8 @@ impl fraction {
     pub fn denominator(&self) -> i32 {
         self.denominator
     }
+
+    pub fn to_string(&self) -> String {
+        format!("{}/{}", self.numerator, self.denominator)
+    }
 }
