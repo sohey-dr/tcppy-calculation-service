@@ -29,3 +29,21 @@ impl PartialEq for Fraction {
         self.numerator == other.numerator && self.denominator == other.denominator
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_fraction_new() {
+      let fraction = Fraction::new(1, 2);
+      assert_eq!(fraction.numerator(), 1);
+      assert_eq!(fraction.denominator(), 2);
+    }
+
+    #[test]
+    fn test_fraction_to_string() {
+      let fraction = Fraction::new(1, 2);
+      assert_eq!(fraction.to_string(), "1/2");
+    }
+}

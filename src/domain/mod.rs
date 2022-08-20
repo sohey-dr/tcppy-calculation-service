@@ -1,1 +1,1 @@
-pub model::fraction;
+mod model;

@@ -1,1 +1,1 @@
-pub fraction;
+mod fraction;
