@@ -1,6 +1,6 @@
 mod handler;
 
-use actix_web::{web, App, HttpServer};
+use actix_web::{web, App, HttpServer, HttpResponse};
 use diesel::{r2d2::{Pool, ConnectionManager}, mysql::MysqlConnection};
 use dotenv::dotenv;
 use std::env;
@@ -12,6 +12,8 @@ pub async fn run() -> std::io::Result<()> {
             web::scope("/api")
                 // .data(RequestContext::new())
                 .route("/", web::get().to(handler::index))
+        ).default_service(
+            web::route().to(|| HttpResponse::NotFound().body("404 - Not Found"))
         )
     })
     .bind("127.0.0.1:8080")?
