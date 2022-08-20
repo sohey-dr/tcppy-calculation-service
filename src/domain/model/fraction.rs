@@ -23,3 +23,9 @@ impl Fraction {
         format!("{}/{}", self.numerator, self.denominator)
     }
 }
+
+impl PartialEq for Fraction {
+    fn eq(&self, other: &Fraction) -> bool {
+        self.numerator == other.numerator && self.denominator == other.denominator
+    }
+}
