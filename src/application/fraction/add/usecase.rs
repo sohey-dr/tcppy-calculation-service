@@ -1,4 +1,3 @@
-use actix_web::{HttpResponse, Responder, get};
 use crate::domain::model::fraction::fraction;
 use crate::application::fraction::add::usecase_output::{FractionAddUsecaseOutput, FractionAddCalculationProcess};
 

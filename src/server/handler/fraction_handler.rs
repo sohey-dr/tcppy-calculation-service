@@ -1,4 +1,4 @@
-use actix_web::{HttpResponse, Responder, get};
+use actix_web::{Responder, get};
 use crate::adapter::presenter::fraction;
 use crate::application::fraction::add::usecase;
 
