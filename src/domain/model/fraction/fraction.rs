@@ -1,5 +1,6 @@
 use rand::prelude::*;
 
+#[derive (Clone, Copy, Debug)]
 pub struct Fraction {
     numerator: i32,
     denominator: i32,
