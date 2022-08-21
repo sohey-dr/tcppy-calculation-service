@@ -7,5 +7,12 @@ pub async fn add() -> impl Responder {
     let f2 = fraction::Fraction::new(1, 2);
     let result = fraction::add(f1, f2);
 
-    HttpResponse::Ok().body(result.to_string())
+    // 約分
+    let reduced = result.reduce();
+
+    if reduced.numerator() % reduced.denominator() == 0 {
+        HttpResponse::Ok().body(format!("{}", reduced.numerator() / reduced.denominator()))
+    } else {
+        HttpResponse::Ok().body(format!("{}", reduced.to_string()))
+    }
 }
