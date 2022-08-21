@@ -1,5 +1,5 @@
 use actix_web::{HttpResponse, Responder, get};
-use crate::adpter::presenter::fraction;
+use crate::adapter::presenter::fraction;
 use crate::application::fraction::add::usecase;
 
 #[get("/add")]
