@@ -1,26 +1,27 @@
 use actix_web::{HttpResponse, Responder, get};
-use crate::domain::model::fraction;
-use crate::adpter::presenter::fraction;
-
-struct FractionAddUsecaseOutput {
-  calculation_formula: Vec<String>,
-  result: String,
-  calculation_process: Vec<FractionAddCalculationProcess>,
-}
-
-struct FractionAddCalculationProcess {
-  calculation_formula: String,
-  result: String,
-  calculation_process: String,
-}
+use crate::domain::model::fraction::fraction;
+use crate::application::fraction::add::usecase_output::{FractionAddUsecaseOutput, FractionAddCalculationProcess};
 
 pub fn exec() -> FractionAddUsecaseOutput {
-    let f1 = fraction::Fraction::new(1, 2);
-    let f2 = fraction::Fraction::new(1, 2);
-    let result = fraction::add(f1, f2);
+  let f1 = fraction::new_random_fraction();
+  let f2 = fraction::new_random_fraction();
+  let added = fraction::add(f1, f2);
 
-    // 約分
-    let reduced = result.reduce();
+  let reduced = added.reduce();
 
-    return FractionAddUsecaseOutput
+  let result = if reduced.numerator() % reduced.denominator() == 0 {
+    format!("{}", reduced.numerator() / reduced.denominator())
+  } else {
+    format!("{}", reduced.to_string())
+  };
+
+  return FractionAddUsecaseOutput {
+    calculation_formula: vec![f1.to_string(), "+".to_string(), f2.to_string()],
+    result: reduced.to_string(),
+    calculation_process: vec![
+      FractionAddCalculationProcess {
+        calculation_formula: "1/2".to_string(),
+      }
+    ]
+  };
 }
