@@ -1,5 +1,5 @@
 use crate::domain::model::fraction::fraction;
-use crate::application::fraction::add::usecase_output::{FractionAddUsecaseOutput, FractionAddCalculationProcess};
+use crate::application::fraction::add::usecase_output::FractionAddUsecaseOutput;
 
 pub fn exec() -> FractionAddUsecaseOutput {
   let f1 = fraction::new_random_fraction();
@@ -8,15 +8,15 @@ pub fn exec() -> FractionAddUsecaseOutput {
 
   let reduced = added.reduce();
 
-  let result = if reduced.numerator() % reduced.denominator() == 0 {
-    format!("{}", reduced.numerator() / reduced.denominator())
+  let result = if reduced.denominator() == 1 {
+    format!("{}", reduced.numerator())
   } else {
-    format!("{}", reduced.to_string())
+    reduced.to_string()
   };
 
   return FractionAddUsecaseOutput {
     calculation_formula: vec![f1.to_string(), "+".to_string(), f2.to_string()],
-    result: reduced.to_string(),
+    result: result,
     calculation_process: vec!["1/2".to_string()],
   };
 }
