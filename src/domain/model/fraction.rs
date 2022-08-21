@@ -22,6 +22,23 @@ impl Fraction {
     pub fn to_string(&self) -> String {
         format!("{}/{}", self.numerator, self.denominator)
     }
+
+    pub fn reduce(&self) -> Fraction {
+        let mut numerator = self.numerator.clone();
+        let mut denominator = self.denominator.clone();
+        let mut gcd = self.gcd(numerator, denominator);
+        numerator /= gcd;
+        denominator /= gcd;
+        Fraction::new(numerator, denominator)
+    }
+
+    fn gcd(&self, a: i32, b: i32) -> i32 {
+        if b == 0 {
+            a
+        } else {
+            self.gcd(b, a % b)
+        }
+    }
 }
 
 impl PartialEq for Fraction {
