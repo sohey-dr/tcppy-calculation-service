@@ -1,0 +1,10 @@
+use actix_web::{Responder, get};
+use crate::adapter::presenter::fraction;
+use crate::application::fraction::add::usecase;
+
+#[get("/add")]
+pub async fn add() -> impl Responder {
+    let output = usecase::exec();
+
+    return fraction::add_json_presenter::exec(output);
+}
