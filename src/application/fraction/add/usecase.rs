@@ -18,10 +18,6 @@ pub fn exec() -> FractionAddUsecaseOutput {
   return FractionAddUsecaseOutput {
     calculation_formula: vec![f1.to_string(), "+".to_string(), f2.to_string()],
     result: reduced.to_string(),
-    calculation_process: vec![
-      FractionAddCalculationProcess {
-        calculation_formula: "1/2".to_string(),
-      }
-    ]
+    calculation_process: vec!["1/2".to_string()],
   };
 }
