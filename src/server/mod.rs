@@ -4,6 +4,7 @@ use actix_web::{web, App, HttpServer, HttpResponse};
 use diesel::{r2d2::{Pool, ConnectionManager}, mysql::MysqlConnection};
 use dotenv::dotenv;
 use std::env;
+use handler::fraction_handler;
 
 #[actix_rt::main]
 pub async fn run() -> std::io::Result<()> {
@@ -11,7 +12,13 @@ pub async fn run() -> std::io::Result<()> {
         App::new().service(
             web::scope("/api")
                 // .data(RequestContext::new())
-                .route("/", web::get().to(handler::index))
+
+                .service(handler::index)
+
+                .service(
+                    web::scope("/fraction")
+                        .service(fraction_handler::add)
+                )
         ).default_service(
             web::route().to(|| HttpResponse::NotFound().body("404 - Not Found"))
         )
