@@ -1,3 +1,5 @@
+use rand::prelude::*;
+
 pub struct Fraction {
     numerator: i32,
     denominator: i32,
