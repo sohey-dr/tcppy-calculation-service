@@ -30,6 +30,13 @@ impl PartialEq for Fraction {
     }
 }
 
+pub fn add(f1: Fraction, f2: Fraction) -> Fraction {
+    let numerator = f1.numerator() * f2.denominator() + f2.numerator() * f1.denominator();
+    let denominator = f1.denominator() * f2.denominator();
+    Fraction::new(numerator, denominator)
+}
+
+
 #[cfg(test)]
 mod tests {
     use super::*;
