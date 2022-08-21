@@ -1,7 +1,7 @@
 mod server;
 mod domain;
 mod application;
-mod adpter;
+mod adapter;
 
 fn main() -> std::io::Result<()> {
     server::run()
