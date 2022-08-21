@@ -53,6 +53,12 @@ pub fn add(f1: Fraction, f2: Fraction) -> Fraction {
     Fraction::new(numerator, denominator)
 }
 
+pub fn new_random_fraction() -> Fraction {
+    let numerator = rand::thread_rng().gen_range(1, 10);
+    let denominator = rand::thread_rng().gen_range(1, 10);
+    Fraction::new(numerator, denominator)
+}
+
 
 #[cfg(test)]
 mod tests {
