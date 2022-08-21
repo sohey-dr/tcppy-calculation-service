@@ -14,3 +14,4 @@ diesel = { version = "1.4.8", features = ["mysql", "r2d2"]}
 dotenv = "0.13.0"
 
 rand = "0.6.5"
+num = "0.4"

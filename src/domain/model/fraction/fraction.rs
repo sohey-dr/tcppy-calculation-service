@@ -1,4 +1,5 @@
 use rand::prelude::*;
+use num::integer;
 
 #[derive (Clone, Copy, Debug)]
 pub struct Fraction {
@@ -60,6 +61,19 @@ pub fn new_random_fraction() -> Fraction {
     let numerator = rand::thread_rng().gen_range(1, 10);
     let denominator = rand::thread_rng().gen_range(1, 10);
     Fraction::new(numerator, denominator)
+}
+
+pub fn reduce_denominators(fractions: Vec<Fraction>) -> Vec<String> {
+    let mut lcm = integer::lcm(fractions[0].denominator(), fractions[1].denominator());
+    for fraction in &fractions {
+        lcm = integer::lcm(lcm, fraction.denominator());
+    }
+
+    fractions.iter().map(|f| {
+        let numerator = f.numerator() * lcm / f.denominator();
+        let denominator = f.denominator() * lcm / f.denominator();
+        format!("{}/{}", numerator, denominator)
+    }).collect()
 }
 
 
