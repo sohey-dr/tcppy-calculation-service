@@ -10,14 +10,14 @@ pub fn exec() -> FractionAddUsecaseOutput {
 
   let f1_reduced = if !f1.eq(&f1.reduce()) {
     // TODO: 初期約分で入れる要素を分ける
-    calculation_process.push(format!("{} → {}", f1.to_string(), f1.reduce().to_string()));
+    calculation_process.push(format!("{}→{}", f1.to_string(), f1.reduce().to_string()));
     f1.reduce()
   } else {
     f1
   };
   let f2_reduced = if !f2.eq(&f2.reduce()) {
      // TODO: 初期約分で入れる要素を分ける
-    calculation_process.push(format!("{} → {}", f2.to_string(), f2.reduce().to_string()));
+    calculation_process.push(format!("{}→{}", f2.to_string(), f2.reduce().to_string()));
     f2.reduce()
   } else {
     f2
