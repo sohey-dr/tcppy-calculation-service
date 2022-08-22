@@ -1,6 +1,7 @@
 mod handler;
 
-use actix_web::{web, App, HttpServer, HttpResponse};
+use actix_web::{web, http, App, HttpServer};
+use actix_cors::Cors;
 use diesel::{r2d2::{Pool, ConnectionManager}, mysql::MysqlConnection};
 use dotenv::dotenv;
 use std::env;
@@ -11,7 +12,6 @@ pub async fn run() -> std::io::Result<()> {
     dotenv().ok();
     let host = env::var("HOST").expect("Host not set");
     let port = env::var("PORT").expect("Port not set");
-    println!("Starting server on {}:{}", host, port);
 
     HttpServer::new(|| {
         let cors = Cors::default()
@@ -32,7 +32,7 @@ pub async fn run() -> std::io::Result<()> {
                         .service(fraction_handler::addition)
                 )
         ).default_service(
-            web::route().to(|| HttpResponse::NotFound().body("404 - Not Found"))
+            web::route().to(handler::not_found)
         )
     })
     .bind(format!("{}:{}", host, port))?
