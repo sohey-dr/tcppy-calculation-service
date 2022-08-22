@@ -7,21 +7,20 @@ use dotenv::dotenv;
 use std::env;
 use handler::fraction_handler;
 
-#[actix_rt::main]
+#[actix_web::main]
 pub async fn run() -> std::io::Result<()> {
     dotenv().ok();
     let host = env::var("HOST").expect("Host not set");
     let port = env::var("PORT").expect("Port not set");
 
     HttpServer::new(|| {
-        let cors = Cors::default()
-            .allowed_origin("*")
-            .allowed_methods(vec!["GET", "POST", "PUT", "DELETE"])
-            .allowed_headers(vec![http::header::AUTHORIZATION, http::header::ACCEPT, http::header::CONTENT_TYPE, http::header::ORIGIN])
-            .allowed_header(http::header::CONTENT_TYPE)
-            .max_age(3600);
-
-        App::new().wrap(cors).service(
+        App::new().wrap(
+            Cors::default().supports_credentials()
+                .allowed_methods(vec!["GET", "POST", "PUT", "DELETE"])
+                .allowed_headers(vec![http::header::AUTHORIZATION, http::header::ACCEPT, http::header::CONTENT_TYPE, http::header::ORIGIN])
+                .allowed_header(http::header::CONTENT_TYPE)
+                .max_age(3600),
+        ).service(
             web::scope("/api")
                 // .data(RequestContext::new())
 
