@@ -15,7 +15,11 @@ pub async fn run() -> std::io::Result<()> {
 
     HttpServer::new(|| {
         App::new().wrap(
-            Cors::default().supports_credentials()
+            Cors::default()
+                .allowed_origin("https://tcppy-backend.herokuapp.com")
+                .allowed_origin_fn(|origin, _req_head| {
+                    true
+                })
                 .allowed_methods(vec!["GET", "POST", "PUT", "DELETE"])
                 .allowed_headers(vec![http::header::AUTHORIZATION, http::header::ACCEPT, http::header::CONTENT_TYPE, http::header::ORIGIN])
                 .allowed_header(http::header::CONTENT_TYPE)
