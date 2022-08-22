@@ -8,6 +8,11 @@ use handler::fraction_handler;
 
 #[actix_rt::main]
 pub async fn run() -> std::io::Result<()> {
+    dotenv().ok();
+    let host = env::var("HOST").expect("Host not set");
+    let port = env::var("PORT").expect("Port not set");
+    println!("Starting server on {}:{}", host, port);
+
     HttpServer::new(|| {
         App::new().service(
             web::scope("/api")
@@ -23,7 +28,7 @@ pub async fn run() -> std::io::Result<()> {
             web::route().to(|| HttpResponse::NotFound().body("404 - Not Found"))
         )
     })
-    .bind("127.0.0.1:8080")?
+    .bind(format!("{}:{}", host, port))?
     .run()
     .await
 }
