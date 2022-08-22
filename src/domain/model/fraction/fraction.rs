@@ -54,6 +54,8 @@ impl PartialEq for Fraction {
 pub fn add(f1: Fraction, f2: Fraction) -> Fraction {
     let numerator = f1.numerator() * f2.denominator() + f2.numerator() * f1.denominator();
     let denominator = f1.denominator() * f2.denominator();
+
+		// TODO: 通分する必要がなければしないようにする
     Fraction::new(numerator, denominator)
 }
 
@@ -92,5 +94,40 @@ mod tests {
     fn test_fraction_to_string() {
       let fraction = Fraction::new(1, 2);
       assert_eq!(fraction.to_string(), "1/2");
+    }
+
+    #[test]
+    fn test_fraction_reduce() {
+      let fraction = Fraction::new(2, 4);
+      assert_eq!(fraction.reduce().to_string(), "1/2");
+    }
+
+    #[test]
+    fn test_fraction_gcd() {
+      let fraction = Fraction::new(2, 4);
+      assert_eq!(fraction.gcd(2, 4), 2);
+    }
+
+    #[test]
+    fn test_fraction_add() {
+      let f1 = Fraction::new(1, 2);
+      let f2 = Fraction::new(1, 2);
+
+			// TODO: 通分する必要がなければしないようにする
+      assert_eq!(add(f1, f2).to_string(), "4/4");
+    }
+
+    #[test]
+    fn test_fraction_reduce_denominators() {
+      let fractions = vec![Fraction::new(1, 2), Fraction::new(1, 3)];
+      assert_eq!(reduce_denominators(fractions), vec!["3/6", "2/6"]);
+    }
+
+    #[test]
+    fn test_fraction_new_random_fraction() {
+      let fraction = new_random_fraction();
+
+      assert!(fraction.numerator() > 0);
+      assert!(fraction.denominator() > 0);
     }
 }
