@@ -1,2 +1,2 @@
 pub mod fraction;
-pub mod fraction_add_calculation_process;
+pub mod fraction_addition_calculation_process;

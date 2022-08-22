@@ -22,7 +22,7 @@ pub async fn run() -> std::io::Result<()> {
 
                 .service(
                     web::scope("/fraction")
-                        .service(fraction_handler::add)
+                        .service(fraction_handler::addition)
                 )
         ).default_service(
             web::route().to(|| HttpResponse::NotFound().body("404 - Not Found"))

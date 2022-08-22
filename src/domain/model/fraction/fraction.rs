@@ -51,7 +51,7 @@ impl PartialEq for Fraction {
     }
 }
 
-pub fn add(f1: Fraction, f2: Fraction) -> Fraction {
+pub fn addition(f1: Fraction, f2: Fraction) -> Fraction {
     let numerator = f1.numerator() * f2.denominator() + f2.numerator() * f1.denominator();
     let denominator = f1.denominator() * f2.denominator();
 
@@ -109,12 +109,12 @@ mod tests {
     }
 
     #[test]
-    fn test_fraction_add() {
+    fn test_fraction_addition() {
       let f1 = Fraction::new(1, 2);
       let f2 = Fraction::new(1, 2);
 
 			// TODO: 通分する必要がなければしないようにする
-      assert_eq!(add(f1, f2).to_string(), "4/4");
+      assert_eq!(addition(f1, f2).to_string(), "4/4");
     }
 
     #[test]

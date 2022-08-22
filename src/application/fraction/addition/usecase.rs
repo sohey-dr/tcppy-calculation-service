@@ -1,10 +1,10 @@
 use crate::domain::model::fraction::fraction;
-use crate::application::fraction::add::usecase_output::FractionAddUsecaseOutput;
+use crate::application::fraction::addition::usecase_output::FractionAdditionUsecaseOutput;
 
-pub fn exec() -> FractionAddUsecaseOutput {
+pub fn exec() -> FractionAdditionUsecaseOutput {
   let f1 = fraction::new_random_fraction();
   let f2 = fraction::new_random_fraction();
-  let added = fraction::add(f1, f2);
+  let additioned = fraction::addition(f1, f2);
 
   let mut calculation_process = vec![];
 
@@ -23,7 +23,7 @@ pub fn exec() -> FractionAddUsecaseOutput {
   calculation_process.push(reduce_denominators[0].clone());
   calculation_process.push(reduce_denominators[1].clone());
 
-  let reduced = added.reduce();
+  let reduced = additioned.reduce();
 
   let result = if reduced.denominator() == 1 {
     calculation_process.push(reduced.to_string());
@@ -32,7 +32,7 @@ pub fn exec() -> FractionAddUsecaseOutput {
     reduced.to_string()
   };
 
-  return FractionAddUsecaseOutput {
+  return FractionAdditionUsecaseOutput {
     calculation_formula: vec![f1.to_string(), "+".to_string(), f2.to_string()],
     initial_reduced_fractions: vec![f1_reduced.to_string(), "+".to_string(), f2_reduced.to_string()],
     result: result,
