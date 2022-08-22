@@ -1,3 +1,3 @@
-pub struct FractionAddCalculationProcess {
+pub struct FractionAdditionCalculationProcess {
   pub process: String,
 }
