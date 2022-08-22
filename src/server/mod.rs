@@ -14,7 +14,14 @@ pub async fn run() -> std::io::Result<()> {
     println!("Starting server on {}:{}", host, port);
 
     HttpServer::new(|| {
-        App::new().service(
+        let cors = Cors::default()
+            .allowed_origin("*")
+            .allowed_methods(vec!["GET", "POST", "PUT", "DELETE"])
+            .allowed_headers(vec![http::header::AUTHORIZATION, http::header::ACCEPT, http::header::CONTENT_TYPE, http::header::ORIGIN])
+            .allowed_header(http::header::CONTENT_TYPE)
+            .max_age(3600);
+
+        App::new().wrap(cors).service(
             web::scope("/api")
                 // .data(RequestContext::new())
 
