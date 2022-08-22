@@ -38,6 +38,7 @@ pub fn exec() -> FractionAddUsecaseOutput {
 
   return FractionAddUsecaseOutput {
     calculation_formula: vec![f1.to_string(), "+".to_string(), f2.to_string()],
+    initial_reduced_fractions: vec![f1_reduced.to_string(), "+".to_string(), f2_reduced.to_string()],
     result: result,
     calculation_process: calculation_process,
   };
