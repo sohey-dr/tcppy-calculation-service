@@ -1,7 +1,7 @@
 use actix_web::{HttpResponse, Responder};
 use serde::Serialize;
 
-use crate::application::fraction::add::usecase_output::FractionAdditionUsecaseOutput;
+use crate::application::fraction::addition::usecase_output::FractionAdditionUsecaseOutput;
 
 #[derive(Serialize)]
 struct FractionAdditionJsonResponse {
