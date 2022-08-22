@@ -14,3 +14,7 @@ pub async fn index() -> impl Responder {
         message: "Hello world!",
     })
 }
+
+pub async fn not_found() -> impl Responder {
+    HttpResponse::NotFound().body("404 - Not Found")
+}
