@@ -7,8 +7,8 @@ use crate::application::fraction::addition::usecase_output::FractionAdditionUsec
 struct FractionAdditionJsonResponse {
   calculation_formula: String,
   initial_reduced_fractions: String,
-  result: String,
   calculation_process: Vec<String>,
+  result: String,
 }
 
 pub fn exec(output: FractionAdditionUsecaseOutput) -> impl Responder {
@@ -19,7 +19,7 @@ pub fn exec(output: FractionAdditionUsecaseOutput) -> impl Responder {
   return HttpResponse::Ok().json(FractionAdditionJsonResponse {
     calculation_formula: calculation_formula,
     initial_reduced_fractions: output.initial_reduced_fractions.join(" "),
-    result: result,
     calculation_process: output.calculation_process,
+    result: result,
   });
 }
