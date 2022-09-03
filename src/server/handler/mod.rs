@@ -1,4 +1,5 @@
 pub mod fraction_handler;
+pub mod decimal_handler;
 
 use actix_web::{HttpResponse, Responder, get};
 use serde::Serialize;

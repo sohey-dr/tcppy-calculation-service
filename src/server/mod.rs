@@ -26,6 +26,7 @@ pub async fn run() -> std::io::Result<()> {
                 .max_age(3600),
         ).service(
             web::scope("/api")
+                // NOTE: DBを使う場合はコメントアウトを外す
                 // .data(RequestContext::new())
 
                 .service(handler::index)
@@ -33,6 +34,11 @@ pub async fn run() -> std::io::Result<()> {
                 .service(
                     web::scope("/fraction")
                         .service(fraction_handler::addition)
+                )
+
+                .service(
+                    web::scope("/decimal")
+                        .service(handler::decimal_handler::multiplication)
                 )
         ).default_service(
             web::route().to(handler::not_found)
